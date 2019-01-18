@@ -1,4 +1,5 @@
 #100DaysOfCode, Day10,11
+student_list = []
 
 def create_student():
     name = input('Введите имя студента: ')
@@ -30,6 +31,14 @@ print(calculate_average_mark(s))
 add_mark(s, 3)
 print(calculate_average_mark(s))
 
+
+def print_student_details(student):
+    print("{}, средняя оценка: {}".format(students['name'],
+                                          calculate_average_mark(student)))
+
+def print_student_list(students):
+    for student in students:
+        print_student_details(student)
 
 '''
 import sys
