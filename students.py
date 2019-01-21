@@ -1,4 +1,4 @@
-#100DaysOfCode, Day10,11
+#100DaysOfCode, Day10,11,12
 student_list = []
 
 def create_student():
@@ -24,28 +24,34 @@ def calculate_average_mark(student):
     total = sum(student['marks'])
     return total / number
 
-s = create_student()
-print(calculate_average_mark(s))
-add_mark(s, 63)
-print(calculate_average_mark(s))
-add_mark(s, 3)
-print(calculate_average_mark(s))
-
-
 def print_student_details(student):
-    print("{}, средняя оценка: {}".format(students['name'],
-                                          calculate_average_mark(student)))
+    print("{}, средняя оценка: {}.".format(student['name'],
+                                         calculate_average_mark(student)))
+
 
 def print_student_list(students):
-    for student in students:
+    for i, student in enumerate(students):
+        print("ID: {}".format(i))
         print_student_details(student)
 
-'''
-import sys
-my_vars = []
-for i in range(3):
-    my_vars.append(lambda: i)
-#print([f() for f in my_vars])
-print(sys.argv)
+def menu():
+    selection = input("Введите 'p' для выведения на экран списка студентов, \n"
+                      "'s' для добавления нового студента, 'a' для добавления \n "
+                      "оценки или 'q' для выхода: \n")
 
-'''
+    while selection != 'q':
+        if selection == 'p':
+            print_student_list(student_list)
+        elif selection == 's':
+            student_list.append(create_student())
+        elif selection == 'a':
+            student_id = int(input("Введите ID студента, которому хотите добавить оценки: "))
+            student = student_list[student_id]
+            new_mark = int(input('Введите новую оценку: '))
+            add_mark(student, new_mark)
+
+        selection = input("Введите 'p' для выведения на экран списка студентов, \n"
+                          "'s' для добавления нового студента, 'a' для добавления \n "
+                          "оценки или 'q' для выхода: \n")
+
+menu()
