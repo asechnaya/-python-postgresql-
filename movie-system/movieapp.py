@@ -1,12 +1,17 @@
 # 100DaysOfCode, Day 13
+from user import User
 from movie import Movie
-import user
 
-user = User("Jose")
+'''
+user = User('Jose')
+user.add_movie("The Matrix", "Sci-Fi")
+user.add_movie("The interview","Comedy")
 
-my_movie = Movie("The Matrix", "Sci-Fi", True)
+user.save_to_file()
+#print(user.watched_movies())
 
-user.movies.append(my_movie)
+'''
+user = User.load_from_file('Jose.txt')
 
-print(user)
-print(user.watched_movies())
+print(user.movies)
+

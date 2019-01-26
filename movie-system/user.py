@@ -19,13 +19,3 @@ class User:
     def watched_movies(self):
         return list(filter(lambda movie: movie.watched, self.movies))
 
-
-
-        '''
-        watched_movies_list = []
-        for movie in self.movies:
-            if movie.watched:
-                watched_movies_list.append(movie)
-
-        return watched_movies_list
-        '''
