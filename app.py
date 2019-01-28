@@ -1,5 +1,8 @@
-#100DaysOfCode, Day10,11
-#100DaysOfCode, Day10,11,12
+#100DaysOfCode, Day10,11,12,14
+with open('my_file.txt', 'w') as f:
+    f.write('Hello, World!')
+
+
 student_list = []
 
 class Student:
@@ -61,12 +64,3 @@ def menu():
 
 menu()
 
-'''
-import sys
-my_vars = []
-for i in range(3):
-    my_vars.append(lambda: i)
-#print([f() for f in my_vars])
-print(sys.argv)
-
-'''

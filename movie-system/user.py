@@ -19,3 +19,10 @@ class User:
     def watched_movies(self):
         return list(filter(lambda movie: movie.watched, self.movies))
 
+    def json(self):
+        return {
+            'name': self.name,
+            'movies': [
+                movie.json() for movie in self.movies
+            ]
+        }
