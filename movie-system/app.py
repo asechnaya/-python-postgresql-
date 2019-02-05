@@ -1,5 +1,5 @@
 # 100DaysOfCode, Day 13
-from user import User
+import user
 from movie import Movie
 
 user = User('Jose')

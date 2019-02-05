@@ -5,7 +5,7 @@ class Movie:
     def __init__(self, name, genre, watched):
         self.name = name
         self.genre = genre
-        self.director = 'Wachowski'
+        #self.director = 'Wachowski'
         self.watched = watched
 
     def __repr__(self):
@@ -18,4 +18,8 @@ class Movie:
             'watched': self.watched
 
         }
+
+    @classmethod
+    def from_json(cls, json_data):
+        return Movie(**json_data)
 
