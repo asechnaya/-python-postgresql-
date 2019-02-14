@@ -1,0 +1,31 @@
+-- #100DaysOfCode. Day 17
+SELECT customers.first_name AS "first name", customers.last_name FROM customers
+WHERE customers.first_name = 'Rolf' OR customers.last_name = 'Watson';
+
+SELECT * FROM items;
+
+UPDATE items SET price=4.00 WHERE id = 3;
+UPDATE items SET price=5.00 WHERE price = 4.00;
+UPDATE items SET price=10.00 WHERE price = 4.00;
+
+SELECT * FROM items;
+DELETE FROM purchases WHERE item_id = 4;
+
+DELETE FROM items WHERE itemid = 4;
+
+SELECT * FROM customers WHERE last_name LIKE '____';
+SELECT * FROM customers WHERE last_name LIKE '%';
+SELECT * FROM customers WHERE last_name LIKE '%t%';
+/*
+SELECT * FROM customers
+INNER JOIN Orders ON customer.id=orders.customer_id;
+*/
+
+-- #100DaysOfCode. Day 18
+SELECT * FROM purchases;
+SELECT * FROM customers;
+SELECT * FROM items 
+INNER JOIN purchases ON items.id = purchases.items_id;
+
+SELECT * FROM customers 
+INNER JOIN purchases ON customers.id = purchases.customer_id;
