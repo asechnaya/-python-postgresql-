@@ -28,4 +28,5 @@ SELECT * FROM items
 INNER JOIN purchases ON items.id = purchases.items_id;
 
 SELECT * FROM customers 
+INNER JOIN purchases ON customers.id = purchases.customer_id;SELECT customers.first_name, customers.last_name FROM customers 
 INNER JOIN purchases ON customers.id = purchases.customer_id;
