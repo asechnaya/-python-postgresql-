@@ -1,0 +1,23 @@
+-- #100DaysOfCode. Day 22 Advanced SQL
+SELECT customers.first_name, customers.last_name, COUNT(purchases.id) AS purchase_count
+FROM customers
+INNER JOIN purchases ON customers.id = purchases.customer_id
+GROUP BY customers.id;
+
+SELECT AVG(items.price) FROM items
+INNER JOIN purchases ON items.id = purchases.item_id;
+
+SELECT * FROM items
+INNER JOIN purchases ON items.id = purchases.item_id;
+
+SELECT items.name, items.price FROM items
+INNER JOIN purchases ON items.id = purchases.item_id
+ORDER BY items.price DESC
+LIMIT 1;
+
+SELECT customers.first_name, customers.last_name, COUNT(purchases.id) AS purchase_count
+FROM customers
+INNER JOIN purchases ON customers.id = purchases.customer_id
+GROUP BY customers.id
+HAVING COUNT(purchases.id) > 3;
+
