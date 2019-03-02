@@ -53,5 +53,123 @@ name character varying(100) NOT NULL ,
 CONSTRAINT user_id_pkey PRIMARY KEY (id)
 )
 
+SELECT * FROM public.users;
+
+CREATE TABLE public.videos (
+id serial,
+user_id integer REFERENCES public.users,
+name character varying(100) NOT NULL
+)
+
+SELECT * FROM public.videos;
+
+INSERT INTO public.videos
+VALUES(1, 2, 'Test video');
+
+CREATE SEQUENCE users_id_seq START 4;
+
+ALTER TABLE public.users
+ALTER COLUMN id
+SET DEFAULT nextval('users_id_seq');
+
+ALTER SEQUENCE users_id_seq OWNED BY public.users.id;
+
+INSERT INTO public.users(name)
+VALUES('johnadams');
+
+DELETE FROM public.users
+WHERE id = 4;
+
+SELECT * FROM public.users
+WHERE name = 'rolphsmith';
 
 
+-- #100DaysOfCode. Day 21
+
+CREATE INDEX users_name_index ON public.users(name);
+
+-- CREATE UNIQUE INDEX index_name ON table(column);
+
+-- SELECT * FROM public.movies WHERE id=1 AND user_id=2;
+
+-- CREATE INDEX index_name ON public.movies(id, user_id);
+
+-- If indeces are corrupted: REINDEX INDEX/TABLE/DATABASE users_name_index/database_name;
+
+DROP TABLE public.users CASCADE;
+
+SELECT * FROM public.videos;
+
+DROP TABLE IF EXISTS public.videos;
+
+-- #100DaysOfCode. Day 21
+
+CREATE VIEW total_revenue_per_customer AS 
+SELECT customers.first_name, customers.last_name, SUM(items.price) FROM customers
+INNER JOIN purchases ON customers.id = purchases.customer_id
+INNER JOIN items ON purchases.item_id = items.id
+GROUP BY customers.id;
+
+SELECT * FROM total_revenue_per_customer;
+
+DROP VIEW total_revenue_per_customer;
+
+CREATE VIEW total_revenue_per_customer AS 
+SELECT customers.id, customers.first_name, customers.last_name, SUM(items.price) FROM customers
+INNER JOIN purchases ON customers.id = purchases.customer_id
+INNER JOIN items ON purchases.item_id = items.id
+GROUP BY customers.id;
+
+SELECT * FROM total_revenue_per_customer;
+
+SELECT * FROM purchases;
+
+INSERT INTO purchases
+VALUES (11, 6, 5);
+
+INSERT INTO purchases
+VALUES (11, 6, 5);
+
+SELECT * FROM items;
+
+CREATE VIEW awesome_customers AS
+SELECT * FROM total_revenue_per_customer WHERE sum > 150;
+
+SELECT * FROM awesome_customers ORDER BY sum DESC;
+
+CREATE VIEW expensive_items AS
+SELECT * FROM items WHERE price > 100;
+
+SELECT * FROM expensive_items;
+
+INSERT INTO expensive_items(id, name, price)
+VALUES (9, 'DSLR', 400.00);
+
+INSERT INTO expensive_items(id, name, price)
+VALUES (11, 'pensil', 100.00);
+
+DROP VIEW expensive_items; 
+
+/*
+CREATE VIEW expensive_items AS 
+SELECT * FROM items WHERE price >= 100
+WITH LOCAL CHECK OPTION; */
+
+DELETE FROM items 
+WHERE id = 11;
+
+CREATE VIEW expensive_items AS 
+SELECT * FROM items WHERE price >= 100;
+
+CREATE VIEW non_luxary_items AS 
+SELECT * FROM expensive_items WHERE price < 100
+WITH LOCAL CHECK OPTION;
+
+INSERT INTO expensive_items(id, name, price)
+VALUES (13, 'pensil', 2.00);
+ 
+DROP VIEW non_luxary_items;
+
+CREATE VIEW non_luxary_items AS 
+SELECT * FROM expensive_items WHERE price < 10000
+WITH CASCADED CHECK OPTION;
