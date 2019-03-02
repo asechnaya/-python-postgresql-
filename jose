@@ -102,7 +102,7 @@ SELECT * FROM public.videos;
 
 DROP TABLE IF EXISTS public.videos;
 
--- #100DaysOfCode. Day 21
+-- #100DaysOfCode. Day 21. Advanced SQL
 
 CREATE VIEW total_revenue_per_customer AS 
 SELECT customers.first_name, customers.last_name, SUM(items.price) FROM customers
