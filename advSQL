@@ -21,3 +21,35 @@ INNER JOIN purchases ON customers.id = purchases.customer_id
 GROUP BY customers.id
 HAVING COUNT(purchases.id) > 3;
 
+
+-- #100DaysOfCode. Day 23 Advanced SQL
+
+SELECT timestamp '2005-10-08 05:16:45.789'; -- ISO8601
+
+SELECT TO_CHAR(NOW(), 'FMDay DDth FMMonth, DD-MM-YYYY HH:MI:SS');
+
+-- #100DaysOfCode. Day 23 Advanced SQL
+
+CREATE TYPE mood AS ENUM('extreamly unhappy', 'unhappy', 'ok', 'happy', 'extreamly happy');
+
+CREATE table students(
+name character varying(255),
+current_mood mood
+);
+
+INSERT INTO students VALUES ('Robert', 'unhappy');
+
+SELECT * FROM students WHERE current_mood > 'ok';
+-----
+SELECT * FROM items WHERE price > 
+(SELECT AVG(items.price) FROM items);
+
+SELECT items.name, items.price - (
+SELECT AVG(items.price) FROM items) FROM items;
+
+CREATE VIEW expensive_items_diff AS
+SELECT *, items.price - (
+SELECT AVG(items.price) FROM items WHERE items.price>100)
+FROM items WHERE price > 100; 
+
+
